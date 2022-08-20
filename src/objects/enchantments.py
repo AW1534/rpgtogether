@@ -127,16 +127,17 @@ one_for_all = Armour(
     dmg_mp=0.5
 )
 
-immortality = Armour(
-    name="Immortality",
+e_synergy = Armour(
+    name="Perfected Synergy",
     description="This power.... I'M INVINCIBLEEE",
     rarity=0,
     special=True,
     value=21420,
-    health_mp=5
+    health_mp=7.5,
+    info="Adds 75% of attack on to your health points"
 )
 
 all_enchantments = [sharp, reforged, burning, lethal, mythical, clover, durable, hardened, crystalized, nokia, synergy,
-                    one_for_all, immortality]
+                    one_for_all, e_synergy]
 all_weapon_enchantments = [sharp, reforged, burning, lethal, mythical, clover]
-all_armor_enchantments = [durable, hardened, crystalized, nokia, synergy, one_for_all, immortality]
+all_armor_enchantments = [durable, hardened, crystalized, nokia, synergy, one_for_all, e_synergy]

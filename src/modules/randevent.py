@@ -19,7 +19,7 @@ def wandering():
             print(f"The wanderer devours the food and thanks you by handing you a {items.pill.description.upper()}")
         if outcome_give == "Enchant":
             print(
-                f"The wanderer takes off his hood and ENCHANTS your armour with {enchantments.immortality.name.upper()}")
+                f"The wanderer takes off his hood and ENCHANTS your armour with {enchantments.one_for_all.name.upper()}")
         if outcome_give == "Steal":
             print("The wanderer snatches the food out of your hand and runs off, never to be seen again.")
         if outcome_give == "Attempt":
@@ -37,7 +37,7 @@ def wandering():
                 attempt_outcome_spare = list_attempt_outcome_spare.gen()
                 if attempt_outcome_spare == "Enchant":
                     print(f"You spare the wanderer and feed him. He gets up and enchants your armour with "
-                          f"{enchantments.immortality.name.upper()} out of guilt")
+                          f"{enchantments.e_synergy.name.upper()} out of guilt")
                 if attempt_outcome_spare == "Die":
                     print("You spare the wanderer and leave him to die.")
 
