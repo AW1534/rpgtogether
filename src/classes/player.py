@@ -4,7 +4,7 @@ import src.helper.list
 class Player:
     def __init__(self, name):
         self.name = name
-        self.rupees = 50
+        self.nuelis = 50
 
         self.max_hunger = 0
 
@@ -20,26 +20,26 @@ class Player:
 
         self.inventory = []
 
-    def trade(self, loses: list = None, gains: list = None, loses_rupees=None, gains_rupees=None):
+    def trade(self, loses: list = None, gains: list = None, loses_nuelis=None, gains_nuelis=None):
         if gains is None:
             gains = []
         if loses is None:
             loses = []
-        if loses_rupees is None:
-            loses_rupees = 0
-        if gains_rupees is None:
-            gains_rupees = 0
+        if loses_nuelis is None:
+            loses_nuelis = 0
+        if gains_nuelis is None:
+            gains_nuelis = 0
 
-        if src.helper.list.contains_items(self.inventory, loses) and self.rupees >= loses_rupees:
+        if src.helper.list.contains_items(self.inventory, loses) and self.nuelis >= loses_nuelis:
             for item in loses:
                 try:
                     self.inventory.remove(item)
                 except ValueError:
                     pass
-            self.rupees -= loses_rupees
+            self.nuelis -= loses_nuelis
 
             self.inventory += gains
-            self.rupees += gains_rupees
+            self.nuelis += gains_nuelis
             return True
         else:
             return False
