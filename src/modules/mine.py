@@ -1,5 +1,5 @@
 import time
-from src import rng
+from src.rng import rng
 from src.objects import items
 
 name = "mine"
@@ -14,7 +14,7 @@ minerals = [
     items.iron
 ]
 
-r = rng.roulette(
+r = rng.Roulette(
     choices = minerals,
     nothing_chance = 80
 )

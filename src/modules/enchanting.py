@@ -19,9 +19,10 @@ weapon_rng = rng.Roulette(
 armour_enchantments = {
     enchantments.durable,
     enchantments.hardened,
+    enchantments.sturdy,
     enchantments.crystalized,
     enchantments.nokia,
-    enchantments.absorbtion,
+    enchantments.synergy,
     enchantments.one_for_all
 }
 

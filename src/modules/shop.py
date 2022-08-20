@@ -18,7 +18,7 @@ buyable_items = [
     items.book,
     items.stone,
     items.rusted_sword,
-    items.leather_set,
+    items.wooly_set,
     items.fishing_rod,
     items.chainmail
 ]

@@ -16,7 +16,8 @@ findable_items = [
     items.book,
     items.page,
     items.rock,
-    items.rope
+    items.rope,
+    items.fabric
 ]
 
 roulette = rng.Roulette(

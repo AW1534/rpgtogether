@@ -70,7 +70,14 @@ hardened = Armour(
     value=500,
     agility=-3
 )
-
+sturdy = Armour(
+    name="Sturdy",
+    description="Lacking a bit of shine for me...",
+    rarity=130,
+    special=False,
+    value=650,
+    agility=0
+)
 crystalized = Armour(
     name="Crystalized",
     description="Infested with crystals, maybe it makes the armour stronger?",

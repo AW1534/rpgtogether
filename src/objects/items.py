@@ -7,7 +7,7 @@ stone = Item(
     damage=0,
     value=2000,
     rarity=1,
-    magic_power = 75
+    magic_power=75,
 )
 rope = Item(
     name="Rope",
@@ -22,7 +22,14 @@ page = Item(
     damage=0,
     value=50,
     rarity=9,
-    magic_power=5
+    magic_power=5,
+)
+fabric = Item(
+    name="Torn piece of fabric",
+    description="Quite dirty, may need a wash",
+    damage=0,
+    value=125,
+    rarity=10
 )
 book = Item(
     name="Magical book",
@@ -35,7 +42,7 @@ book = Item(
         page, page,
         rope
     ],
-    magic_power=125
+    magic_power=125,
 )
 rock = Item(
     name="Rock",
@@ -66,37 +73,47 @@ health_pot = Item(
     name="Heal Potion",
     description="A classic potion, smells sweet",
     damage=0,
-    value=50
+    value=50,
 )
 enchanting_setup = Item(
     name="Enchanting Setup",
     description="Mysterious set of books which possess vast amounts of knowledge",
     damage=0,
-    value=11250
+    value=11250,
 )
 # endregion
 
 # region combat
 
 
-leather_set = Armor(
-    name="Leather Set",
+wooly_set = Armor(
+    name="Wooly Set",
     description="Cosy set, but not very durable",
     damage=10,
     value=400,
     health=30,
-    enchantable=enchantments.all_armor_enchantments
+    enchantable=enchantments.all_armor_enchantments,
 )
 chainmail = Armor(
     name="Chainmail Armor",
-    description="Heavy chainmail armor",
+    description="Sturdy chainmail armor",
     damage=10,
     health=75,
     value=1000,
-    agility=-5,
+    agility=-2,
     enchantable=enchantments.all_armor_enchantments
 )
-
+plated = Armor(
+    name="Plated Armor",
+    description="I can barely move",
+    damage=10,
+    health=100,
+    value=1350,
+    agility=-5,
+    enchantable=enchantments.all_armor_enchantments,
+    recipe=[iron, iron, iron, iron, iron, iron, iron, iron, iron, iron, iron, iron,
+            fabric, fabric, fabric, fabric, fabric, fabric, fabric, fabric]
+)
 rusted_sword = Item(
     name="Rusted Sword",
     description="Sword.. a tiny bit old though",
@@ -106,10 +123,20 @@ rusted_sword = Item(
 )
 sword_regular = Item(
     name="Steel Sword",
-    description="A regular sword, made from steel",
+    description="A regular sword, forged from steel",
     damage=20,
     value=600,
     enchantable=enchantments.all_weapon_enchantments
+)
+composite_sword = Item(
+    name="Composite Sword",
+    description="Forged from many different types of blades",
+    damage=35,
+    value=1000,
+    enchantable=enchantments.all_weapon_enchantments,
+    recipe=[iron, iron, iron, iron, iron, iron,
+            gemstone,
+            fabric]
 )
 
 fishing_rod = Item(
@@ -119,8 +146,9 @@ fishing_rod = Item(
     value=500,
 )
 
-all_items = [stone, rope, page, book, rock, iron, gemstone, health_pot, enchanting_setup, fishing_rod, rusted_sword, leather_set, sword_regular, chainmail]
-all_weapons = [rusted_sword, sword_regular]
-all_armor = [leather_set, chainmail]
+all_items = [stone, rope, page, book, rock, iron, gemstone, health_pot, enchanting_setup, fishing_rod, rusted_sword,
+             sword_regular, composite_sword, wooly_set, chainmail, plated]
+all_weapons = [rusted_sword, sword_regular, composite_sword]
+all_armor = [wooly_set, chainmail, plated]
 
 # endregion

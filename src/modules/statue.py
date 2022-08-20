@@ -44,46 +44,70 @@ def run(p, args):
     else:
         print("oof, looks like you don't have this item")
 
-
+# region weak raiders
 list_weak_raiders = [
     entities.beast,
     entities.hound,
     entities.goblin
 ]
+number_weak_raiders = [1, 2, 3, 4]
 select_weak_raiders = rng.Roulette(
     choices=list_weak_raiders,
     nothing_chance=0
 )
+amount_weak_raiders = rng.Roulette(
+    choices=number_weak_raiders,
+    nothing_chance=0
+)
+# endregion
+# region strong raiders
 list_strong_raiders = [
     entities.bull,
     entities.boa,
     entities.mutant_bee
 ]
+number_strong_raiders = [3, 4, 5, 6]
 select_strong_raiders = rng.Roulette(
     choices=list_strong_raiders,
     nothing_chance=0
 )
+amount_strong_raiders = rng.Roulette(
+    choices=number_strong_raiders,
+    nothing_chance=0
+)
+# endregion
+# region invasion
 list_invasion_raiders = [
     entities.raider
 ]
+number_invasion_raiders = [15, 17, 19, 23]
 select_invasion_raiders = rng.Roulette(
     choices=list_invasion_raiders,
     nothing_chance=0
 )
-
-
+amount_invasion_raiders = rng.Roulette(
+    choices=number_invasion_raiders,
+    nothing_chance=0
+)
+# endregion
 def battle():
     def weak_raid():
         for i in obj_s_i[i - 1]:
             if item.magic_power >= 1:
-                print("SUDDENLY,  you see {} charging towards you")
+                present_weak_raider = select_weak_raiders.gen()
+                present_amount_weak_raider = amount_weak_raiders.gen()
+                print(f"SUDDENLY,  you see {present_amount_weak_raider} {present_weak_raider}s charging towards you")
 
     def strong_raid():
         for i in obj_s_i[i - 1]:
             if item.magic_power > 100:
-                print("SUDDENLY, you see {} charging towards you")
+                present_strong_raider = select_strong_raiders.gen()
+                present_amount_strong_raider = amount_strong_raiders.gen()
+                print(f"SUDDENLY, you see {present_amount_strong_raider} {present_strong_raider}s charging towards you")
 
     def invasion():
         for i in obj_s_i[i - 1]:
             if item.magic_power > 200:
-                print("SUDDENLY, you see {} rushing towards you")
+                present_invasion = select_invasion_raiders.gen()
+                present_amount_invasion = amount_invasion_raiders.gen()
+                print(f"SUDDENLY, you see {present_invasion} {present_amount_invasion}s rushing towards you")
