@@ -6,7 +6,8 @@ sharp = Weapon(
     description="Sharpened and shiny",
     rarity=100,
     special=False,
-    value=500
+    value=500,
+    dmg_mp=1.5
 )
 
 reforged = Weapon(
@@ -14,7 +15,8 @@ reforged = Weapon(
     description="Been through the smithy once again",
     rarity=80,
     special=False,
-    value=650
+    value=650,
+    dmg_mp=2
 )
 
 burning = Weapon(
@@ -22,7 +24,8 @@ burning = Weapon(
     description="Hasn't cooled down yet eh?",
     rarity=50,
     special=False,
-    value=900
+    value=900,
+    dmg_mp=3
 )
 
 lethal = Weapon(
@@ -30,7 +33,8 @@ lethal = Weapon(
     description="Sharpened to the brim",
     rarity="15",
     special=False,
-    value=1500
+    value=1500,
+    dmg_mp=4
 )
 
 mythical = Weapon(
@@ -39,7 +43,8 @@ mythical = Weapon(
     rarity="3",
     special=True,
     value=2100,
-    info="Extra damage to bosses"
+    info="Extra damage to bosses",
+    dmg_mp=5
 )
 
 clover = Weapon(
@@ -48,7 +53,10 @@ clover = Weapon(
     rarity="3",
     special=True,
     value=2100,
-    info="Increased coins multiplier during scavenge"
+    coins_mp=1.5,
+    dmg_mp=5,
+    info="Increased coins multiplier during scavenge",
+
 )
 # endregion
 
@@ -59,7 +67,8 @@ durable = Armour(
     description="Extra strong and extra hard",
     rarity=200,
     special=False,
-    value=500
+    value=500,
+    health_mp=1.5
 )
 
 hardened = Armour(
@@ -68,7 +77,8 @@ hardened = Armour(
     rarity=160,
     special=False,
     value=500,
-    agility=-3
+    agility=-3,
+    health_mp=3
 )
 sturdy = Armour(
     name="Sturdy",
@@ -76,14 +86,15 @@ sturdy = Armour(
     rarity=130,
     special=False,
     value=650,
-    agility=0
+    health_mp=3
 )
 crystalized = Armour(
     name="Crystalized",
     description="Infested with crystals, maybe it makes the armour stronger?",
     rarity=100,
     special=False,
-    value=900
+    value=900,
+    health_mp=5
 )
 
 nokia = Armour(
@@ -91,17 +102,18 @@ nokia = Armour(
     description="Strongest plating of them all, unbreakable",
     rarity=1,
     special=False,
-    value=5000,
-    info="Adds 2000 defense"
+    value=20000,
+    health_mp=10
 )
 
 synergy = Armour(
-    name="Synergization",
-    description="The stronger i get, the higher my health gets. cool.",
+    name="Synchronization",
+    description="The stronger I get, the higher my health gets. cool.",
     rarity=10,
     special=True,
     value=2100,
-    info="50% of your damage is added as health."
+    info="50% of your damage is added as health.",
+    health_mp=5
 )
 
 one_for_all = Armour(
@@ -115,6 +127,16 @@ one_for_all = Armour(
     dmg_mp=0.5
 )
 
-all_enchantments = [sharp, reforged, burning, lethal, mythical, clover, durable, hardened, crystalized, nokia, synergy, one_for_all]
+immortality = Armour(
+    name="Immortality",
+    description="This power.... I'M INVINCIBLEEE",
+    rarity=0,
+    special=True,
+    value=21420,
+    health_mp=5
+)
+
+all_enchantments = [sharp, reforged, burning, lethal, mythical, clover, durable, hardened, crystalized, nokia, synergy,
+                    one_for_all, immortality]
 all_weapon_enchantments = [sharp, reforged, burning, lethal, mythical, clover]
-all_armor_enchantments = [durable, hardened, crystalized, nokia, synergy, one_for_all]
+all_armor_enchantments = [durable, hardened, crystalized, nokia, synergy, one_for_all, immortality]

@@ -9,9 +9,13 @@ class Item:
     enchantable = []
     magic_power = 0
 
-    def __init__(self, name, damage, value, rarity = 0, description="", recipe = [], enchantment = None,
-                 enchantable = [], magic_power = 0
+    def __init__(self, name, damage, value, rarity=0, description="", recipe=None, enchantment=None,
+                 enchantable=None, magic_power=0
                  ):
+        if enchantable is None:
+            enchantable = []
+        if recipe is None:
+            recipe = []
         self.name = name
         self.damage = damage
         self.value = value
@@ -30,7 +34,7 @@ class Armor(Item):
     health = 0
     agility = 0
 
-    def __init__(self, name, damage, value, health, agility = -5, rarity = 0, description="", recipe=[], enchantable = []):
+    def __init__(self, name, damage, value, health, agility=-5, rarity=0, description="", recipe=[], enchantable=[]):
         super().__init__(name, damage, value, rarity, description, recipe, enchantable)
         self.health = health
         self.agility = agility

@@ -1,5 +1,6 @@
 from src.classes.item import Item, Armor
 from src.objects import enchantments
+import random
 
 stone = Item(
     name="Magical stone",
@@ -74,6 +75,14 @@ health_pot = Item(
     description="A classic potion, smells sweet",
     damage=0,
     value=50,
+)
+pill = Item(
+    name="Suspicious Pill",
+    description="A mysterious looking pill, is it safe to eat?",
+    damage=-9999,
+    value=10001,
+    health=random.randint()
+
 )
 enchanting_setup = Item(
     name="Enchanting Setup",

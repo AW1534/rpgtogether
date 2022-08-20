@@ -1,4 +1,3 @@
-from src.objects import items
 from src.rng import rng
 from src.objects import enchantments
 
@@ -31,20 +30,22 @@ armour_rng = rng.Roulette(
     nothing_chance=5
 )
 
-name = "enchant"
-aliases = ["ench"]
-description = "casts a spell upon your gear"
-
 
 def broken_w():
     print("YOUR WEAPON HAS BROKEN")
+
 
 def broken_a():
     print("YOUR ARMOUR HAS BROKEN")
 
 
+name = "enchant"
+aliases = ["ench"]
+description = "casts a spell upon your gear"
+
+
 def run(player, args):
-    print ("---> Magical Stone Tablet <---")
+    print("---> Magical Stone Tablet <---")
 
     if args[0] == "sword":
         print("You have *enchanted* your sword:")
@@ -56,7 +57,6 @@ def run(player, args):
             if weapon_enchant == None:
                 broken_w()
 
-
     if args[0] == "armour":
         print("You have *enchanted* your sword:")
 
@@ -64,7 +64,5 @@ def run(player, args):
             armour_enchant = armour_rng.gen()
             print(armour_enchant)
 
-            if armour_enchant== None:
+            if armour_enchant == None:
                 broken_a()
-
-

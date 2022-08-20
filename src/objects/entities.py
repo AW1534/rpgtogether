@@ -1,7 +1,9 @@
 import random
 from src.classes.entity import Entity
 
-# region scavenge_entities
+# region randevent entities
+# endregion
+# region scavenge entities
 fire_dragon = Entity(
     name="FIRE-BREATHING DRAGON",
     description=f"A big scary fire-breathing dragon, you should probably run.",
