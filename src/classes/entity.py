@@ -7,7 +7,7 @@ class Entity:
     chance = 0
     agility = 0
 
-    def __init__(self, name, damage, hp, rarity, hostile = False, description = "", agility = 0):
+    def __init__(self, name, damage, hp, rarity, hostile=False, description="", agility=0):
         self.name = name
         self.damage = damage
         self.hp = hp

@@ -1,9 +1,9 @@
 import traceback
 
-from src.modules import scavenge, hunt, shop, debug
+from src.modules import scavenge, hunt, shop, debug, mine, statue
 from src.classes import player
 
-commands = [scavenge, hunt, shop, debug]
+commands = [scavenge, hunt, shop, debug, mine, statue]
 
 print("----------------------\nWelcome to RPGTogether\n----------------------\n")
 
