@@ -2,8 +2,7 @@
 from src.classes import player
 from src.objects import items
 
-from src.rng import rng
-
+from src.helper import rng
 
 name = "scavenge"
 aliases = ["s", "sc", "scv"]

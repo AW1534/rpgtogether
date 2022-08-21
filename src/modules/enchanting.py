@@ -1,4 +1,4 @@
-from src.rng import rng
+from src.helper import rng
 from src.objects import enchantments
 
 weapon_enchantments = [

@@ -6,8 +6,10 @@ class Entity:
     hostile = False
     chance = 0
     agility = 0
+    nuelis = 0
+    inventory = []
 
-    def __init__(self, name, damage, hp, rarity, hostile=False, description="", agility=0):
+    def __init__(self, name, damage, hp, rarity, hostile=False, description="", agility=0, nuelis = 0, inventory = []):
         self.name = name
         self.damage = damage
         self.hp = hp
@@ -15,3 +17,5 @@ class Entity:
         self.hostile = hostile
         self.rarity = rarity
         self.agility = agility
+        self.nuelis = nuelis
+        self.inventory = inventory

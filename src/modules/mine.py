@@ -1,5 +1,4 @@
-import time
-from src.rng import rng
+from src.helper import rng
 from src.objects import items
 
 name = "mine"

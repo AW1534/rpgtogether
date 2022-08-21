@@ -142,13 +142,4 @@ raider = Entity(
     agility=(9,11),
     rarity=1
 )
-mcnaughton = Entity(
-    name="Max McNaughton",
-    hostile=True,
-    description="A WILD MAX, YOU BETTER RUN",
-    hp=999999999,
-    damage=9999999,
-    agility=999999999,
-    rarity=1
-)
 # endregion
