@@ -33,7 +33,5 @@ def run(player, args):
             choices=hunted.inventory,
             nothing_chance=500
         )
-        if drop is None:
-            print(f"You didn't find anything valuable that the {hunted.name} had. Better luck next time")
-        else:
+        if drop is not None:
             print(f"You took a {drop}")

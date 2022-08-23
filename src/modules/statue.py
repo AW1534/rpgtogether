@@ -1,3 +1,5 @@
+import random
+
 from src.objects import items
 from src.helper import rng
 from src.objects import entities
@@ -59,10 +61,6 @@ select_weak_raiders = rng.Roulette(
     choices=list_weak_raiders,
     nothing_chance=0
 )
-amount_weak_raiders = rng.Roulette(
-    choices=number_weak_raiders,
-    nothing_chance=0
-)
 # endregion
 # region strong raiders
 list_strong_raiders = [
@@ -75,10 +73,6 @@ select_strong_raiders = rng.Roulette(
     choices=list_strong_raiders,
     nothing_chance=0
 )
-amount_strong_raiders = rng.Roulette(
-    choices=number_strong_raiders,
-    nothing_chance=0
-)
 # endregion
 # region invasion
 list_invasion_raiders = [
@@ -87,10 +81,6 @@ list_invasion_raiders = [
 number_invasion_raiders = [15, 17, 19, 23]
 select_invasion_raiders = rng.Roulette(
     choices=list_invasion_raiders,
-    nothing_chance=0
-)
-amount_invasion_raiders = rng.Roulette(
-    choices=number_invasion_raiders,
     nothing_chance=0
 )
 
@@ -104,17 +94,17 @@ def battle():
     # weak raid
     if total_mp <= 100:
         present_weak_raider = select_weak_raiders.gen()
-        present_amount_weak_raider = amount_weak_raiders.gen()
+        present_amount_weak_raider = random.randint(1, 4)
         print(f"SUDDENLY,  you see {present_amount_weak_raider} {present_weak_raider}s charging towards you")
 
     # strong raid
     if 100 < total_mp < 200:
         present_strong_raider = select_strong_raiders.gen()
-        present_amount_strong_raider = amount_strong_raiders.gen()
+        present_amount_strong_raider = random.randint(3, 6)
         print(f"SUDDENLY, you see {present_amount_strong_raider} {present_strong_raider}s charging towards you")
 
     # invasion
     if total_mp >= 200:
         present_invasion = select_invasion_raiders.gen()
-        present_amount_invasion = amount_invasion_raiders.gen()
+        present_amount_invasion = random.randint(15, 23)
         print(f"SUDDENLY, you see {present_invasion} {present_amount_invasion}s rushing towards you")
