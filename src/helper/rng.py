@@ -13,10 +13,10 @@ class Roulette:
     def gen(self):
         return random.choice(self.choices)
 
+
 class Fight:
     def __init__(self, teams: list):
         self.teams = teams
-
 
     def gen(self):
         team_avgs = {

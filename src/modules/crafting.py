@@ -3,7 +3,7 @@ from src.objects import items
 
 
 def run(player, args):
-    craftables = [items.sword, items.chainmail]
+    craftables = [items.composite_sword, items.plated_armour]
 
     try:
         crafting = args[0]

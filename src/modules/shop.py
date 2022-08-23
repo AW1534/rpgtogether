@@ -24,7 +24,7 @@ buyable_items = [
     items.rusted_sword,
     items.wooly_set,
     items.fishing_rod,
-    items.chainmail
+    items.chainmail_armour
 ]
 sellable_items = [
     items.rock,

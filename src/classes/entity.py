@@ -1,3 +1,4 @@
+
 class Entity:
     name = ""
     damage = 0
@@ -9,7 +10,9 @@ class Entity:
     nuelis = 0
     inventory = []
 
-    def __init__(self, name, damage, hp, rarity, hostile=False, description="", agility=0, nuelis = 0, inventory = []):
+    def __init__(self, name, damage, hp, rarity, hostile=False, description="", agility=0, nuelis=0, inventory=None):
+        if inventory is None:
+            inventory = []
         self.name = name
         self.damage = damage
         self.hp = hp

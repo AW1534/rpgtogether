@@ -17,14 +17,23 @@ spawnable_entities = [
     entities.fire_dragon
 ]
 
-roulette = rng.Roulette(
+entity = rng.Roulette(
     choices=spawnable_entities,
     nothing_chance=10
 )
 
+
 def run(player, args):
-    entity = roulette.gen()
-    if entity == None:
+    hunted = entity.gen()
+    if hunted is None:
         print("Nothing found... better luck next time")
     else:
-        print(f"You found {entity.description.lower()}")
+        print(f"You found {hunted.description.lower()}")
+        drop = rng.Roulette(
+            choices=hunted.inventory,
+            nothing_chance=500
+        )
+        if drop is None:
+            print(f"You didn't find anything valuable that the {hunted.name} had. Better luck next time")
+        else:
+            print(f"You took a {drop}")

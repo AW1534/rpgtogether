@@ -2,6 +2,7 @@ from src.classes.item import Item, Armor
 from src.objects import enchantments
 import random
 
+# region scavenge
 stone = Item(
     name="Magical stone",
     description="A mysterious luminescent orb",
@@ -45,6 +46,28 @@ book = Item(
     ],
     magic_power=125,
 )
+# endregion
+# region hunt
+dragon_scale = Item(
+    name="Dragon Scale",
+    description="Very tough extract of a dragons skin",
+    value=5000,
+    rarity=10
+)
+dragon_wing = Item(
+    name="Dragon Wing",
+    description="Maybe this can make me fly?",
+    value=50000,
+    rarity=1
+)
+nails = Item(
+    name="Zombie Nails",
+    description="Ewww this stinks",
+    value=2250,
+    rarity=15
+)
+# endregion
+# region mine
 rock = Item(
     name="Rock",
     description="A regular rock, nothing special about it...",
@@ -67,7 +90,7 @@ gemstone = Item(
     rarity=1,
     magic_power=100
 )
-
+# endregion
 # region utilities
 
 health_pot = Item(
@@ -81,7 +104,7 @@ pill = Item(
     description="A mysterious looking pill, is it safe to eat?",
     damage=-9999,
     value=10001,
-    health=random.randint()
+    health=random.randint(40,60)
 
 )
 enchanting_setup = Item(
@@ -91,7 +114,6 @@ enchanting_setup = Item(
     value=11250,
 )
 # endregion
-
 # region combat
 
 
@@ -101,9 +123,9 @@ wooly_set = Armor(
     damage=10,
     value=400,
     health=30,
-    enchantable=enchantments.all_armor_enchantments,
+    enchantable=enchantments.all_armor_enchantments
 )
-chainmail = Armor(
+chainmail_armour = Armor(
     name="Chainmail Armor",
     description="Sturdy chainmail armor",
     damage=10,
@@ -112,7 +134,7 @@ chainmail = Armor(
     agility=-2,
     enchantable=enchantments.all_armor_enchantments
 )
-plated = Armor(
+plated_armour = Armor(
     name="Plated Armor",
     description="I can barely move",
     damage=10,
@@ -154,10 +176,16 @@ fishing_rod = Item(
     damage=5,
     value=500,
 )
-
-all_items = [stone, rope, page, book, rock, iron, gemstone, health_pot, enchanting_setup, fishing_rod, rusted_sword,
-             sword_regular, composite_sword, wooly_set, chainmail, plated]
-all_weapons = [rusted_sword, sword_regular, composite_sword]
-all_armor = [wooly_set, chainmail, plated]
-
 # endregion
+
+all_items_withcombat = [stone, rope, page, fabric, book, dragon_wing, dragon_scale, rock, iron, gemstone, health_pot,
+                        pill,
+                        enchanting_setup, fishing_rod, rusted_sword, sword_regular, composite_sword, wooly_set,
+                        chainmail_armour, plated_armour]
+
+all_weapons = [rusted_sword, sword_regular, composite_sword]
+
+all_armour = [wooly_set, chainmail_armour, plated_armour]
+
+all_items = [stone, rope, page, fabric, book, dragon_wing, dragon_scale, rock, iron, gemstone, health_pot, pill,
+             enchanting_setup, fishing_rod]

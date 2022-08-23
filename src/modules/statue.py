@@ -12,7 +12,7 @@ cooldown_warning = "The statue lost all it's power for now, wait {cooldown} seco
 offerable_items = []
 offered_items = []
 
-for i in items.all_items:
+for i in items.all_items_withcombat:
     if i.magic_power > 0:
         offerable_items.append(i)
 

@@ -1,6 +1,6 @@
 import random
 from src.classes.entity import Entity
-
+from src.objects import items
 # region randevent entities
 # endregion
 # region scavenge entities
@@ -10,7 +10,8 @@ fire_dragon = Entity(
     hp=random.randint(50, 60),
     damage=random.randint(30, 40),
     hostile=True,
-    rarity=1
+    rarity=1,
+    inventory=[items.dragon_wing, items.dragon_scale]
 )
 
 ogre = Entity(
@@ -28,7 +29,8 @@ sus = Entity(
     hp=random.randint(10, 75),
     damage=random.randint(5, 30),
     hostile=random.choice([True, False]),
-    rarity=3
+    rarity=3,
+    inventory=[items.all_items]
 )
 
 zombie = Entity(
@@ -37,7 +39,8 @@ zombie = Entity(
     description="A regular zombie rotting away in the sun",
     hp=random.randint(7, 13),
     damage=random.randint(2, 4),
-    rarity=14
+    rarity=14,
+    inventory=[items.nails]
 )
 
 deer = Entity(
@@ -46,7 +49,8 @@ deer = Entity(
     description="A harmless deer",
     hp=15,
     damage=0,
-    rarity=20
+    rarity=20,
+    inventory=[items.fabric]
 )
 
 sheep = Entity(
@@ -55,7 +59,8 @@ sheep = Entity(
     description="A fluffy sheep",
     hp=10,
     damage=0,
-    rarity=20
+    rarity=20,
+    inventory=[items.fabric]
 )
 
 pig = Entity(
@@ -143,3 +148,4 @@ raider = Entity(
     rarity=1
 )
 # endregion
+
