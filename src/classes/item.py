@@ -8,9 +8,10 @@ class Item:
     enchantment = None
     enchantable = []
     magic_power = 0
+    health = 0
 
-    def __init__(self, name, damage, value, rarity=0, description="", recipe=None, enchantment=None,
-                 enchantable=None, magic_power=0
+    def __init__(self, name, value, damage=0, rarity=0, description="", recipe=None, enchantment=None,
+                 enchantable=None, magic_power=0, health=0
                  ):
         if enchantable is None:
             enchantable = []
@@ -25,6 +26,7 @@ class Item:
         self.enchantment = enchantment
         self.enchantable = enchantable
         self.magic_power = magic_power
+        self.health = health
 
     def __str__(self):
         return self.name

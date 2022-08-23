@@ -1,7 +1,6 @@
 from src.objects import items
 from src.objects import enchantments
-from src.helper import rng
-from src.classes.player import Player
+from src.helper.rng import Roulette
 
 # region outcomes
 list_wandering_outcomes_give = ["Killed", "Repay", "Enchant", "Enchant", "Steal", "Steal", "Attempt", "Attempt",
@@ -12,30 +11,30 @@ list_attempt_outcome_kill = ["Decap", "Escape"]
 list_attempt_outcome_spare = ["Enchant", "Die", "Die"]
 # endregion
 # region roulettes
-random_give = rng.Roulette(
+random_give = Roulette(
     choices=list_wandering_outcomes_give,
     nothing_chance=0
 )
-random_walk = rng.Roulette(
+random_walk = Roulette(
     choices=list_wandering_outcomes_walk,
     nothing_chance=0
 )
-random_attack = rng.Roulette(
+random_attack = Roulette(
     choices=list_wandering_outcomes_attack,
     nothing_chance=0
 )
-random_kill = rng.Roulette(
+random_kill = Roulette(
     choices=list_attempt_outcome_kill,
     nothing_chance=0
 )
-random_spare = rng.Roulette(
+random_spare = Roulette(
     choices=list_attempt_outcome_spare,
     nothing_chance=0
 )
 
 
 # endregion
-def wandering():
+def wandering(Player):
     choice = input(
         "A wanderer walks up to you and begs for food\nWhat do you do?\t>Give food<\t>Walk away<\t>Attack him<")
     if choice == "give food":

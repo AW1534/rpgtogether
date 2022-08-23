@@ -1,5 +1,5 @@
 import src.helper.list
-import entity
+from src.classes import entity
 from src.objects import items
 from src.classes.item import Armor
 from src.classes.item import Item

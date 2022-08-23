@@ -40,12 +40,14 @@ class Enchantment:
 
 
 class Weapon(Enchantment):
-    def __init__(self, name, value, rarity=0, description="", special=False, info=""):
+    def __init__(self, name, value, rarity=0, description="", special=False, info="", agility=0, agility_mp=0, health=0,
+             health_mp=0, dmg=0, dmg_mp=0, coins_mp=0):
         super().__init__(name, value, rarity=0, description="", special=False, info="", coins_mp=0, agility=0,
                          agility_mp=0, health=0, health_mp=0, dmg=0, dmg_mp=0)
 
 
 class Armour(Enchantment):
-    def init(self, name, value, rarity=0, description="", special=False, info="", agility=0, health=0, dmg=0):
+    def init(self, name, value, rarity=0, description="", special=False, info="", agility=0, agility_mp=0, health=0,
+             health_mp=0, dmg=0, dmg_mp=0):
         super().__init__(name, value, rarity=0, description="", special=False, info="", agility=0, agility_mp=0,
                          health=0, health_mp=0, dmg=0, dmg_mp=0)

@@ -1,5 +1,6 @@
 from src.objects import items
 from src import helper
+from src.classes.player import Player
 
 name = "shop"
 aliases = ["shp", "sh", "sho"]
