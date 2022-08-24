@@ -1,5 +1,8 @@
 from src.helper import rng
 from src.objects import enchantments
+from src.classes.player import Player
+from src.objects import items
+
 
 weapon_enchantments = [
     enchantments.sharp,
@@ -33,10 +36,12 @@ armour_rng = rng.Roulette(
 
 def broken_w():
     print("YOUR WEAPON HAS BROKEN")
+    Player.weapon.pop()
 
 
 def broken_a():
     print("YOUR ARMOUR HAS BROKEN")
+    Player.armor.pop()
 
 
 name = "enchant"
@@ -53,8 +58,9 @@ def run(player, args):
         def run(p: player.Player, arg):
             weapon_enchant = weapon_rng.gen()
             print(weapon_enchant)
+            Player.weapon.enchantment.append(weapon_enchant)
 
-            if weapon_enchant == None:
+            if weapon_enchant is None:
                 broken_w()
 
     if args[0] == "armour":
@@ -64,5 +70,5 @@ def run(player, args):
             armour_enchant = armour_rng.gen()
             print(armour_enchant)
 
-            if armour_enchant == None:
+            if armour_enchant is None:
                 broken_a()

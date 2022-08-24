@@ -10,6 +10,8 @@ def run(p, args):
         weapon(p)
     if args[0].lower() in ["armor", "armour"]:
         armor(p)
+    else:
+        print("Invalid Argument")
 
 
 def weapon(p):
@@ -58,4 +60,4 @@ def armor(p):
     trade = p.trade(
         loses=[item]
     )
-    p.weapon = item
+    p.armour = item

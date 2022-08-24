@@ -150,14 +150,16 @@ rusted_sword = Item(
     description="Sword.. a tiny bit old though",
     damage=20,
     value=250,
-    enchantable=enchantments.all_weapon_enchantments
+    enchantable=enchantments.all_weapon_enchantments,
+    enchantment=[]
 )
 sword_regular = Item(
     name="Steel Sword",
     description="A regular sword, forged from steel",
     damage=20,
     value=600,
-    enchantable=enchantments.all_weapon_enchantments
+    enchantable=enchantments.all_weapon_enchantments,
+    enchantment=[]
 )
 composite_sword = Item(
     name="Composite Sword",
@@ -167,7 +169,8 @@ composite_sword = Item(
     enchantable=enchantments.all_weapon_enchantments,
     recipe=[iron, iron, iron, iron, iron, iron,
             gemstone,
-            fabric]
+            fabric],
+    enchantment=[]
 )
 
 fishing_rod = Item(

@@ -36,7 +36,8 @@ class Armor(Item):
     health = 0
     agility = 0
 
-    def __init__(self, name, damage, value, health, agility=-5, rarity=0, description="", recipe=None, enchantable=None):
+    def __init__(self, name, damage, value, health, agility=-5, rarity=0, description="", recipe=None, enchantable=None
+                 ):
         super().__init__(name, damage, value, rarity, description, recipe, enchantable)
         if enchantable is None:
             enchantable = []

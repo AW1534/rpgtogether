@@ -2,6 +2,7 @@ from src.objects import items
 from src.objects import enchantments
 from src.helper.rng import Roulette
 
+
 # region outcomes
 list_wandering_outcomes_give = ["Killed", "Repay", "Enchant", "Enchant", "Steal", "Steal", "Attempt", "Attempt",
                                 "Attempt"]
@@ -35,8 +36,9 @@ random_spare = Roulette(
 
 # endregion
 def wandering(Player):
+    print("-----------------------------------------------------")
     choice = input(
-        "A wanderer walks up to you and begs for food\nWhat do you do?\t>Give food<\t>Walk away<\t>Attack him<")
+        "A wanderer walks up to you and begs for food.\nWhat do you do?\t>Give food<\t>Walk away<\t>Attack him<")
     if choice == "give food":
         outcome_give = random_give.gen()
         if outcome_give == "Killed":
@@ -85,3 +87,23 @@ def wandering(Player):
                 print("You slash at the wanderer, but another sword sinks deep into your spine.")
             if outcome_attack == "Escape":
                 print("You swing at the wanderer, but the wanderer dodges your blade and runs off into the distance.")
+    print("-----------------------------------------------------")
+
+
+def coin_drop(Player):
+    print("----------------------------------------------------")
+    print("WAIT WHAAT?? THERE'S COINS DROPPING OUT OF THE SKY??")
+    response = input("Type:`GO AWAY IT'S ALL MINE!!11!`for free coins!")
+    print("----------------------------------------------------")
+    coins = Player.agility * 7304
+    coin = Player.agility * 2489
+    if response == "GO AWAY IT'S ALL MINE!!11!":
+        print(f"Collected {coins} nuelis")
+        Player.trade(gains_nuelis=coins)
+    if response == "no":
+        print("You walk away... and tripped over a sussy amogus life-size action figure")
+        print("Some coins fell out of your pocket and rolled away")
+        print(f"You lost {coin}")
+        Player.trade(loses_nuelis=coin)
+    else:
+        print("oops, might want to get a new keyboard lmao")

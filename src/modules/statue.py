@@ -1,5 +1,5 @@
 import random
-
+from src.classes.player import Player
 from src.objects import items
 from src.helper import rng
 from src.objects import entities
@@ -22,7 +22,7 @@ for i in items.all_items_withcombat:
 def run(p, args):
     offerable_item_names = []
     offerable_obj = []
-    for i in p.inventory:
+    for i in Player.inventory:
         if i in offerable_items:
             offerable_item_names.append(i.name)
             offerable_obj.append(i)
