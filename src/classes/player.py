@@ -31,3 +31,6 @@ class Player(entity.Entity):
             return True
         else:
             return False
+
+
+

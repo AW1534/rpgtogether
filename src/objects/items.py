@@ -104,7 +104,7 @@ pill = Item(
     description="A mysterious looking pill, is it safe to eat?",
     damage=-9999,
     value=10001,
-    health=random.randint(40,60)
+    health=random.randint(40, 60)
 
 )
 enchanting_setup = Item(
@@ -181,6 +181,29 @@ fishing_rod = Item(
 )
 # endregion
 
+# region miscellaneous
+key = Item(
+    name="Glowing key",
+    description="How.. is it still shining?!",
+    damage=10,
+    value=35000,
+    rarity=0,
+    recipe=[  # requires nuelis to craft
+        stone, gemstone, book, iron
+    ]
+)
+cube = Item(
+    name="Cube of Nuelimaeyah",
+    description="Nice cube... OUCH HOT",
+    damage=10,
+    value=50000,
+    rarity=0,
+    recipe=[  # requires nuelis to craft
+        book, dragon_scale, dragon_scale, dragon_scale, gemstone, stone,
+        iron, iron, iron, iron, iron, iron, iron, iron
+    ]
+)
+# endregion
 all_items_withcombat = [stone, rope, page, fabric, book, dragon_wing, dragon_scale, rock, iron, gemstone, health_pot,
                         pill,
                         enchanting_setup, fishing_rod, rusted_sword, sword_regular, composite_sword, wooly_set,
