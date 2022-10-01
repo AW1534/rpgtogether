@@ -1,4 +1,5 @@
 import random
+from src.classes.player import Player
 
 
 class Roulette:
@@ -20,24 +21,35 @@ class Fight:
 
     def gen(self):
         loses_hp = 0
+
         for team in self.teams:
-            total = 0
+            player_total = 0
+            enemy_total = 0
             cnt = 0
 
             for entity in team:
                 cnt += 1
-                pow = 0
+                power = 0
 
                 if entity.hostile:
-                    pow += entity.damage * 3
-                    pow += entity.agility
-                    pow += entity.health
-                    total += pow
+                    power += entity.damage * 3
+                    power += entity.agility
+                    power += entity.health
+                    enemy_total += power
                 else:
-                    pow += random.randint(-10, 30)
+                    power += random.randint(-10, 30)
 
-            total += random.randint(-40, 40)
+            player_total += Player.damage * 3
+            player_total += Player.agility
+            player_total += Player.health
+            player_total += random.randint(-20, 20)
 
-            loses_hp += total / 10
+            enemy_total += random.randint(-20, 20)
 
-        return loses_hp
+            loses_hp += player_total - enemy_total
+
+            if loses_hp >= 0:
+                loses_hp = 0
+
+        Player.health -= loses_hp
+        return True

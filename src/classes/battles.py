@@ -1,7 +1,8 @@
 from src.helper import rng
+from src.classes.player import Player
 
 
-class Battle():
+class Battle_wave:
     def __init__(self, player, waves=None):
         if waves is None:
             waves = []
@@ -11,11 +12,14 @@ class Battle():
     wave = 0
 
     def next_wave(self):
+        total_lose = 0
         self.wave += 1
         for entities in self.waves[self.wave]:  # for each entity in the wave
-            rng.Fight(
+            lose = rng.Fight(
                 teams=[
                     [self.player],
                     entities]
             )
+            total_lose += lose
+        Player.health -= total_lose
 

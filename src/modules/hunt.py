@@ -1,5 +1,7 @@
 from src.helper import rng
 from src.objects import entities
+from src.helper import formatting
+from src.classes.player import Player
 
 name = "hunt"
 aliases = ["h", "hu", "hun"]
@@ -26,9 +28,13 @@ entity = rng.Roulette(
 def run(player, args):
     hunted = entity.gen()
     if hunted is None:
-        print("Nothing found... better luck next time")
+        formatting.add_border(func=name, string="Nothing found... better luck next time")
     else:
-        print(f"You found {hunted.description.lower()}")
+        lose = rng.Fight(
+            teams=hunted
+        )
+        formatting.add_border(func=name, string=f"You found {hunted.description.lower()}!\n"
+                                                f"You lost {lose} hp, your current hp is {Player.health}")
         drop = rng.Roulette(
             choices=hunted.inventory,
             nothing_chance=500

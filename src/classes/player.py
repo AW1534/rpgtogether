@@ -4,7 +4,9 @@ from src.classes import entity
 
 class Player(entity.Entity):
     def __init__(self, name="", damage=0, rarity=0, hostile=False, description="", agility=0, nuelis=0, inventory=None,
-                 armour=None, weapon=None, base_max_health=0, max_health=0, base_damage=0, base_agility=0):
+                 armour=None, weapon=None, base_max_health=0, max_health=0, base_damage=0, base_agility=0, player=True):
+        self.player = player
+
         super().__init__(name, damage, rarity, hostile, description, agility, nuelis, inventory,
                          armour, weapon, base_max_health, max_health, base_damage, base_agility)
 
@@ -31,6 +33,7 @@ class Player(entity.Entity):
             return True
         else:
             return False
+
 
 
 
