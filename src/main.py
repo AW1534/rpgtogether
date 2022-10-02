@@ -1,9 +1,9 @@
 import traceback
 
-from src.modules import scavenge, hunt, shop, debug, mine, statue
+from src.modules import scavenge, hunt, shop, debug, mine, statue, gateway
 from src.classes import player
 
-commands = [scavenge, hunt, shop, debug, mine, statue]
+commands = [scavenge, hunt, shop, debug, mine, statue, gateway]
 
 print("----------------------\nWelcome to RPGTogether\n----------------------\n")
 
@@ -16,7 +16,7 @@ p = None
 # TODO: prestige??
 # TODO: random events
 
-if p == None:
+if p is None:
     p = player.Player(input("username: "))
 
 while True:

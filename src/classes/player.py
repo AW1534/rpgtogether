@@ -1,4 +1,4 @@
-from src.helper import list
+from src.helper import list, formatting
 from src.classes import entity
 
 
@@ -34,6 +34,6 @@ class Player(entity.Entity):
         else:
             return False
 
-
-
-
+    def death(self):
+        self.inventory = []
+        formatting.add_border("you died", "you lost all items in your inventory")

@@ -46,7 +46,7 @@ class Entity:
         self.inventory = inventory
 
     @staticmethod
-    def getFullPower(health, hostile, damage, agility):
+    def get_full_power(health, hostile, damage, agility):
         full_power = health + damage * 2 + agility * 0.5
         if hostile is False:
             full_power / 4
