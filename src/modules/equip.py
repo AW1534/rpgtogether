@@ -1,14 +1,15 @@
 from src import helper
 from src.classes.item import Armor
+from src.objects import items
 
 name = "equip"
 aliases = ["eq"]
 
 
 def run(p, args):
-    if args[0].lower() == "weapon":
+    if args[0].lower() in ["weapon", "w"]:
         weapon(p)
-    if args[0].lower() in ["armor", "armour"]:
+    if args[0].lower() in ["armor", "armour", "a"]:
         armor(p)
     else:
         print("Invalid Argument")
@@ -17,7 +18,10 @@ def run(p, args):
 def weapon(p):
     s_i = []
     for i in p.inventory:
-        s_i.append(i.name)
+        if i in items.all_weapons:
+            s_i.append(i.name)
+        else:
+            continue
 
     print("Equippable items:\n")
 

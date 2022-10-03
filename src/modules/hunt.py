@@ -33,11 +33,13 @@ def run(player, args):
         lose = rng.Fight(
             teams=hunted
         )
+
         formatting.add_border(func=name, string=f"You found {hunted.description.lower()}!\n"
-                                                f"You lost {lose} hp, your current hp is {Player.health}")
+                                                f"You lost {lose.gen(player=player)} hp, your current hp is {player.health}")
         drop = rng.Roulette(
             choices=hunted.inventory,
             nothing_chance=500
         )
         if drop is not None:
             print(f"You took a {drop}")
+            player.trade(gains=drop)
