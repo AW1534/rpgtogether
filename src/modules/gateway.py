@@ -259,7 +259,7 @@ def open(p):
             opening = input(f"You have {x}/1 key and you have {y}/1 cube.\nDo you want to insert them?\n>>\t")
     except TypeError:
         print("Invalid Input")
-        quit(run(p))
+
 
     if opening == option.no:
         print("Leaving the gates...")
@@ -275,7 +275,7 @@ def open(p):
         print("The gates slowly open, with rays of blinding light beaming out.")
 
 
-def run(p: player):
+def run(p: player, args):
     open(p)
 
     while game_running is True:

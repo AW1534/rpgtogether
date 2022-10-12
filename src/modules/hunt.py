@@ -1,3 +1,5 @@
+import math
+
 from src.helper import rng
 from src.objects import entities
 from src.helper import formatting
@@ -27,19 +29,33 @@ entity = rng.Roulette(
 
 def run(player, args):
     hunted = entity.gen()
-    if hunted is None:
-        formatting.add_border(func=name, string="Nothing found... better luck next time")
+    print(hunted)
+    if len(hunted) <= 0:
+        formatting.add_border(func=name, strings="Nothing found... better luck next time")
     else:
         lose = rng.Fight(
-            teams=hunted
+            teams=[hunted]
         )
 
-        formatting.add_border(func=name, string=f"You found {hunted.description.lower()}!\n"
-                                                f"You lost {lose.gen(player=player)} hp, your current hp is {player.health}")
-        drop = rng.Roulette(
-            choices=hunted.inventory,
-            nothing_chance=500
+        txt = [f"You found a {x.name.lower()}: {x.description.lower():>15}" for x in hunted].append(
+            f"You lost {abs(lose.gen(player=player))} hp, your current hp is {player.health}"
         )
-        if drop is not None:
-            print(f"You took a {drop}")
+
+        formatting.add_border(func=name, strings=txt)
+
+        drop = rng.Roulette(
+            choices=hunted[0].inventory,
+            nothing_chance=500,
+        ).gen()
+
+        if len(drop) > 0:
+            formatting.add_bot_border("Rewards", [f"You took a {drop}"])
             player.trade(gains=drop)
+        else:
+            formatting.add_bot_border("Rewards",
+                formatting.delta_time(
+                    seconds=cooldown,
+                    m_format_string="You didn't find anything. Try again in {m} minutes and {s} seconds",
+                    s_format_string="You didn't find anything. Try again in {m} minutes"
+                )
+            )

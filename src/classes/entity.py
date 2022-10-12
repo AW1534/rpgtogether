@@ -56,5 +56,5 @@ class Entity:
     def get_full_power(entity):
         full_power = entity.health + (entity.damage * 2) + (entity.agility * 0.5)
         if entity.hostile is False:
-            full_power / 4
+            full_power /= 4
             return full_power

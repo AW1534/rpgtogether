@@ -10,8 +10,8 @@ class Roulette:
         for i in range(nothing_chance):
             self.choices.append(None)
 
-    def gen(self):
-        return random.choice(self.choices)
+    def gen(self, amt = 1):
+        return [random.choice(self.choices) for i in range(amt)]
 
 
 class Fight:

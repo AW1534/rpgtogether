@@ -1,36 +1,44 @@
 import time
+
 from src.objects import items
-from src.helper import formatting
+from src.helper import rendering
+from src.helper import list
 
 
-def run(player, args):
-    global crafting_recipe
-    craftables = [items.composite_sword, items.plated_armour, items.book.recipe, items.enchanting_setup
-                  ]
+name = "craft"
+aliases = ["cft", "make"]
+description = "craft an item bruh"
 
-    craftables_recipe = [("composite sword", items.composite_sword.recipe),
-                         ("plated armor", items.plated_armour.recipe),
-                         ("book", items.book.recipe),
-                         ("enchanting setup", items.enchanting_setup.recipe)
-                         ]
-    ready = []
-
-    try:
-        crafting = args[0]
-    except IndexError:
-        crafting = input(">>Workshop\n What would you like to craft? ")
-        for i in craftables:
-            print(f"{i.name}:\t{', '.join(i.recipe)}")
-
-    for i in craftables_recipe:
-        if i == crafting:
-            crafting_recipe = i[1]
-
-    for i in crafting_recipe:
-        if i not in player.inventory:
-            formatting.add_border("crafting", "You do not have enough items to craft this item")
-            ready = []
-        else:
-            ready.append(i)
+craftables = [x for x in items.all_items if x.recipe is not None or x.recipe is not []]
 
 
+def run(p, args, renderer: rendering.__Renderer):
+
+
+    desired = str(args[0]).replace('"', "").replace("'", "").upper()
+    amt = 1
+    if args[1] is not None and args[1] >= 1:
+        amt = args[1]
+
+
+
+    item = [x for x in craftables if x.name.upper() == desired][0]
+
+
+
+    if item == None:
+        return
+
+    page = rendering.Page(title="Crafting", text=[f"Crafting {list.sort_to_string([item.name], False)[0]}"])
+    renderer.set_page(page)
+    time.sleep(15)
+    p.trade(
+        loses=item.recipe,
+        gains=item
+    )
+    page.buffer = [
+        f"crafted {item.name}",
+        f"{item.description}"
+    ]
+
+    renderer.set_page(page)

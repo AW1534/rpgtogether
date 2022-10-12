@@ -31,6 +31,9 @@ def sort_to_string(list, count_if_single=True):
     i = -1
     for item in cnt:
         i += 1
-        l.append(f"{list[i]}\t(x{cnt[item]})")
+        if count_if_single == True and cnt[item] == 1:
+            l.append(f"{list[i]}\t")
+        else:
+            l.append(f"{list[i]}\t(x{cnt[item]})")
 
     return l
