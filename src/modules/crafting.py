@@ -1,30 +1,44 @@
 import time
+
 from src.objects import items
+from src.helper import rendering
+from src.helper import list
 
 
-def run(player, args):
-    craftables = [items.composite_sword, items.plated_armour]
+name = "craft"
+aliases = ["cft", "make"]
+description = "craft an item bruh"
 
-    try:
-        crafting = args[0]
-    except IndexError:
-        crafting = input(">>Workshop\n What would you like to craft? ")
-        for i in craftables:
-            print(f"{i.name}:\t{', '.join(i.recipe)}")
+craftables = [x for x in items.all_items if x.recipe is not None or x.recipe is not []]
 
-    if crafting == "composite sword":
-        print("crafting composite sword...will be ready in 10 seconds")
-        time.sleep(10)
 
-    elif crafting == "plated armour":
-        print("crafting plated armour...will be ready in 10 seconds")
-        time.sleep(10)
+def run(p, args, renderer: rendering.__Renderer):
 
-    elif crafting == "magical book":
-        print("crafting magical book...will be ready in 15 seconds")
-        time.sleep(15)
 
-    elif crafting == "enchanting setup":
-        print("setting up enchanting setup...will be ready in 30 seconds")
-        time.sleep(30)
+    desired = str(args[0]).replace('"', "").replace("'", "").upper()
+    amt = 1
+    if args[1] is not None and args[1] >= 1:
+        amt = args[1]
 
+
+
+    item = [x for x in craftables if x.name.upper() == desired][0]
+
+
+
+    if item == None:
+        return
+
+    page = rendering.Page(title="Crafting", text=[f"Crafting {list.sort_to_string([item.name], False)[0]}"])
+    renderer.set_page(page)
+    time.sleep(15)
+    p.trade(
+        loses=item.recipe,
+        gains=item
+    )
+    page.buffer = [
+        f"crafted {item.name}",
+        f"{item.description}"
+    ]
+
+    renderer.set_page(page)

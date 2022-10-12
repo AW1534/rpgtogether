@@ -4,7 +4,7 @@ class Item:
     value = 0
     description = ""
     recipe = 0
-    rarity = 0
+    rarity = []
     enchantment = None
     enchantable = []
     magic_power = 0
