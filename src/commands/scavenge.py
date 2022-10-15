@@ -1,4 +1,3 @@
-
 from src.classes import player
 from src.objects import items
 
@@ -25,8 +24,8 @@ roulette = rng.Roulette(
 )
 
 
-def run(p: player.Player, arg):
-    item = roulette.gen()
+def run(p: player.Player, arg, r):
+    item, = roulette.gen()
 
     if item is None:
         print("You found nothing")

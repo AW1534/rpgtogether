@@ -2,6 +2,7 @@ from src.classes.enchantment import Enchantment, Weapon, Armour
 
 # region weapon
 sharp = Weapon(
+    id=700,
     name="Sharpened",
     description="Sharpened and shiny",
     rarity=100,
@@ -11,6 +12,7 @@ sharp = Weapon(
 )
 
 reforged = Weapon(
+    id=701,
     name="Reforged",
     description="Been through the smithy once again",
     rarity=80,
@@ -20,6 +22,7 @@ reforged = Weapon(
 )
 
 burning = Weapon(
+    id=702,
     name="Burning",
     description="Hasn't cooled down yet eh?",
     rarity=50,
@@ -29,6 +32,7 @@ burning = Weapon(
 )
 
 lethal = Weapon(
+    id=703,
     name="Lethal",
     description="Sharpened to the brim",
     rarity="15",
@@ -38,6 +42,7 @@ lethal = Weapon(
 )
 
 mythical = Weapon(
+    id=710,
     name="Mythical",
     description="Bestowed with the power of a mythical stone",
     rarity="3",
@@ -48,6 +53,7 @@ mythical = Weapon(
 )
 
 clover = Weapon(
+    id=701,
     name="Clover",
     description="Who knows what this can do",
     rarity="3",
@@ -63,6 +69,7 @@ clover = Weapon(
 # region armour
 
 durable = Armour(
+    id=720,
     name="Durable",
     description="Extra strong and extra hard",
     rarity=200,
@@ -72,6 +79,7 @@ durable = Armour(
 )
 
 hardened = Armour(
+    id=721,
     name="Hardened",
     description="Hard as a rock, but unfortunately rocks aren't the best at moving",
     rarity=160,
@@ -81,6 +89,7 @@ hardened = Armour(
     health_mp=3
 )
 sturdy = Armour(
+    id=722,
     name="Sturdy",
     description="Lacking a bit of shine for me...",
     rarity=130,
@@ -89,6 +98,7 @@ sturdy = Armour(
     health_mp=3
 )
 crystalized = Armour(
+    id=723,
     name="Crystalized",
     description="Infested with crystals, maybe it makes the armour stronger?",
     rarity=100,
@@ -98,6 +108,7 @@ crystalized = Armour(
 )
 
 nokia = Armour(
+    id=730,
     name="NOKIA-3310 PLATING",
     description="Strongest plating of them all, unbreakable",
     rarity=1,
@@ -107,6 +118,7 @@ nokia = Armour(
 )
 
 synergy = Armour(
+    id=731,
     name="Synchronization",
     description="The stronger I get, the higher my health gets. cool.",
     rarity=10,
@@ -117,6 +129,7 @@ synergy = Armour(
 )
 
 one_for_all = Armour(
+    id=732,
     name="One FOR ALL",
     description="A worthy sacrifice",
     rarity=5,
@@ -128,6 +141,7 @@ one_for_all = Armour(
 )
 
 e_synergy = Armour(
+    id=733,
     name="Perfected Synergy",
     description="This power.... I'M INVINCIBLEEE",
     rarity=0,

@@ -1,42 +1,70 @@
 # rendering system is the very first thing to be imported, as it will show the loading screen
+import asyncio
 import time
 
-from src.helper.rendering import renderer, Page
+import pymongo
+from pymongo.server_api import ServerApi
+
+from src.helper.rendering import __Renderer, Page
+from src.helper import formatting
+
+renderer = __Renderer(
+    splash=Page(
+        title="RPGTogether is starting up",
+        text=[f"If this is taking too long, please contact the creators:",
+              f"{formatting.hyperlink('https://github.com/AW1534/rpgtogether', 'Github')}"]
+    )
+)
+
+from src.helper import hlist
 
 import random
 
 import traceback
 
-from src.modules import scavenge, hunt, shop, debug, mine, statue, gateway, quit
+from src.commands import scavenge, hunt, shop, debug, mine, statue, gateway, quit, randevent
 from src.classes import player
+
+from src.config import config
+
+import threading
+
+print(config)
+
+client = pymongo.MongoClient(config["MONGO"], server_api=ServerApi('1'))
+db = client.db
+users = db.users
 
 input = renderer.input
 
-commands = [scavenge, hunt, shop, debug, mine, statue, gateway, quit]
+active_commands = [scavenge, hunt, shop, debug, mine, statue, gateway, quit]
+passive_commands = [randevent.wandering, randevent.coin_drop]
 
 r = random.Random()
 
-tips = [
-    "Enjoy your stay!",
-    "Use help for help on specific commands!",
-    "Now begins your new adventure!"
-        ]
+l = hlist.Unique_generator(
+    [
+        "Enjoy your stay!",
+        "Use help for help on specific commands!",
+        "Now begins your new adventure!",
+        "i like men"
+    ]
+)
 
-welcome = Page(title="Welcome to RPGTogether", text=[r.choice(tips)], center_title_character="+")
+welcome = Page(title="Welcome to RPGTogether", text=l.pick(1), center_title_character="+")
 renderer.set_page(welcome)
-cox = Page(title="I love cok", text=["d"], center_title_character="+")
-renderer.set_page(cox)
 
 done = False
 
+
 def loading_animation(x):
     if done: return 1
-    x.buffer[2] = r.choice(tips)
+    x.set_page(Page(title="Welcome to RPGTogether", text=l.pick(1), center_title_character="+"))
 
 
-#renderer.animate(loading_animation, interval=3)
+#renderer.animate(loading_animation, interval=0.1)
 
-time.sleep(2)
+time.sleep(2)  # poopoo
 done = True
 
 p = None
@@ -44,8 +72,19 @@ p = None
 # TODO: try to load player automatically using save data
 # TODO: achievements
 # TODO: quests
-# TODO: magical disguised gambling
 # TODO: prestige??
+
+func_loop = asyncio.new_event_loop()
+update_loop = asyncio.new_event_loop()
+
+
+def loop():
+    func_loop.run_forever()
+
+
+#t1 = threading.Thread(target=loop, daemon=True).run()
+
+#update_loop.run_forever()
 
 if p is None:
     p = player.Player(
@@ -59,11 +98,12 @@ while True:
     cmd = l[0].lower()
 
     l2 = l
-    l2.pop(0) # list of args
+    l2.pop(0)  # list of args
 
-    for command in commands:
-        if cmd in command.aliases or cmd == command.name:
+    for active in active_commands:
+        if cmd in active.aliases or cmd == active.name:
             try:
-                command.run(p, l2, renderer)
+                active.run(p, l2, renderer)
+
             except Exception as e:
                 traceback.print_exc()

@@ -27,7 +27,7 @@ entity = rng.Roulette(
 )
 
 
-def run(player, args):
+def run(player, args, r):
     hunted = entity.gen()
     print(hunted)
     if len(hunted) <= 0:

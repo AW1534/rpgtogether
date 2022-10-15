@@ -3,8 +3,7 @@ import random
 from src.helper import option, formatting
 from src.objects import items
 from src.classes import player
-from src.classes.entity import Entity
-
+from src.objects.entities import gateway_dragon
 
 name = "gateway"
 aliases = ["g", "end fight", "dungeon"]
@@ -74,20 +73,6 @@ escape = Move(
     risk=70
 )
 
-dragon = Entity(
-    name="Almighty Dragon of the Gates",
-    description="How... d-did it get so e-enormous??!",
-    base_max_health=2000,
-    max_health=4000,
-    health=2000,
-    base_damage=300,
-    damage=300,
-    base_agility=20,
-    agility=20,
-    rarity=0,
-    hostile=True,
-)
-
 turns = 0
 
 
@@ -130,13 +115,13 @@ def next_turn(p):
                                 risk = 0
 
                             if attack > 0:
-                                dragon.health -= attack
+                                gateway_dragon.health -= attack
                                 print(formatting.add_border(
                                     "gateway", f"YOU HIT THE DRAGON FOR {attack} HEALTH!\n"
-                                               f"the dragon is on {dragon.health} hp"))
+                                               f"the dragon is on {gateway_dragon.health} hp"))
 
                             if defense > 0:
-                                dragon.damage -= defense
+                                gateway_dragon.damage -= defense
                                 print(formatting.add_border(
                                     "gateway", f"You enter your defensive stance\n"
                                                f"you take {defense} less damage next turn"))
@@ -189,13 +174,13 @@ def next_turn(p):
                                 risk = 0
 
                             if attack > 0:
-                                dragon.health -= attack
+                                gateway_dragon.health -= attack
                                 print(formatting.add_border(
                                     "gateway", f"YOU HIT THE DRAGON FOR {attack} HEALTH!\n"
-                                               f"the dragon is on {dragon.health} hp"))
+                                               f"the dragon is on {gateway_dragon.health} hp"))
 
                             if defense > 0:
-                                dragon.damage -= defense
+                                gateway_dragon.damage -= defense
                                 print(formatting.add_border(
                                     "gateway", f"You enter your defensive stance\n"
                                                f"you take {defense} less damage next turn"))
@@ -229,7 +214,7 @@ game_running = True
 
 
 def check_win(p):
-    if dragon.health == 0:
+    if gateway_dragon.health == 0:
         formatting.add_border("gateway", f"YOU HAVE SLAYED THE ALMIGHTY DRAGON")
         global game_running
         game_running = False
@@ -275,7 +260,7 @@ def open(p):
         print("The gates slowly open, with rays of blinding light beaming out.")
 
 
-def run(p: player, args):
+def run(p: player, args, r):
     open(p)
 
     while game_running is True:

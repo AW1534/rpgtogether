@@ -19,7 +19,7 @@ r = rng.Roulette(
 )
 
 
-def run(player, args):
+def run(player, args, r):
     res = []
     for i in range(200):
         res = r.gen()

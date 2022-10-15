@@ -1,0 +1,83 @@
+1 - Players
+
+2 - Items
+    20 - Scavenge
+        200 - Stone
+        201 - Rope
+        202 - Page
+        203 - Fabric
+        204 - Book
+    21 - Hunt
+        210 - Dragon Scale
+        211 - Dragon Wing
+        212 - Nail
+    22 - Mine
+        220 - Rock
+        221 - Iron
+        222 - Gemstone
+    23 - Utility
+        230 - Health Pot
+        231 - Pill
+        232 - Enchanting Set Up
+    24 - Miscellaneous
+        240 - Key
+        241 - Cube
+
+3 - Armour
+    30 - Armour
+        300 - Wooly Set
+        301 - Chainmail Armour
+        302 - Plated Armour
+
+4 - Weapon
+    40 - Weapon
+        400 - Rusted Sword
+        401 - Steel Sword
+        402 - Composite Sword
+    49 - Fishing Rod
+        490 - Fishing Rod
+
+5 - Entities
+    50 - Hostile
+        500 - Fire Breathing Dragon
+        501 - Ogre
+        502 - Mysterious Creature
+        503 - Zombie
+    51 - Passive
+        510 - Deer
+        511 - Sheep
+        512 - Pig
+    52 - Weak Raider
+        520 - Beast
+        521 - Hound
+        522 - Goblin
+    53 - Strong Raider
+        530 - Bull
+        531 - Boa
+        532 - Mutant Bee
+    54 - Invader
+        540 - Raider
+
+6 - Elites
+    60 - Elites
+        600 - Gateway Dragon
+
+7 - Enchantments
+    70 - Weapon Enchants
+        700 - Sharp
+        701 - Reforged
+        702 - Burning
+        703 - Lethal
+    71 - Specialized Weapon Enchants
+        710 - Mythical
+        711 - Clover
+    72 - Armour Enchants
+        720 - Durable
+        721 - Hardened
+        722 - Sturdy
+        723 - Crystalized
+    73 - Specialized Armour Enchants
+        730 - Nokia
+        731 - Synergy
+        732 - One For All
+        733 - Perfected Synergy

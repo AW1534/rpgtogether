@@ -6,7 +6,7 @@ name = "equip"
 aliases = ["eq"]
 
 
-def run(p, args):
+def run(p, args, r):
     if args[0].lower() in ["weapon", "w"]:
         weapon(p)
     if args[0].lower() in ["armor", "armour", "a"]:
@@ -26,7 +26,7 @@ def weapon(p):
     print("Equippable items:\n")
 
     i = 0
-    l_string = helper.list.sort_to_string(s_i)
+    l_string = helper.hlist.sort_to_string(s_i)
     for item in l_string:
         i += 1
         print(f"{i}: {item}")
@@ -52,7 +52,7 @@ def armor(p):
     print("Equippable items:\n")
 
     i = 0
-    l_string = helper.list.sort_to_string(s_i)
+    l_string = helper.hlist.sort_to_string(s_i)
     for item in l_string:
         i += 1
         print(f"{i}: {item}")

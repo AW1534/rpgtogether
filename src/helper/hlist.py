@@ -1,3 +1,4 @@
+import random
 from collections import Counter
 
 
@@ -37,3 +38,19 @@ def sort_to_string(list, count_if_single=True):
             l.append(f"{list[i]}\t(x{cnt[item]})")
 
     return l
+
+class Unique_generator:
+    def __init__(self, list=[]):
+        self.list = list
+        self.last_pick = []
+
+    def pick(self, amt=1):
+        curr_choice = self.last_pick
+        while curr_choice is self.last_pick:
+            curr_choice = []
+            for i in range(amt):
+                curr_choice.append(random.choice(self.list))
+
+        self.last_pick = curr_choice
+        return curr_choice
+
