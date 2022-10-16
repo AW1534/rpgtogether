@@ -4,15 +4,40 @@ from src.classes import entity
 
 class Player(entity.Entity):
     def __init__(self, id=0, name="", damage=0, rarity=0, hostile=False, description="", agility=10, nuelis=0, essence=0, inventory=None,
-                 armor=None, weapon=None, base_max_health=100, max_health=1000, health=100, base_damage=0, base_agility=10,
-                 ):
+                 armour=None, weapon=None, base_max_health=100, max_health=1000, health=100, base_damage=0, base_agility=10,
+                 blessing=None, nuelis_potential=1, essence_potential=1):
 
         super().__init__(id=id, name=name, damage=damage, rarity=rarity, hostile=hostile, description=description, agility=agility, nuelis=nuelis,
                          inventory=inventory,
-                         armor=armor, weapon=weapon, base_max_health=base_max_health, max_health=max_health, health=health, base_damage=base_damage,
+                         armor=armour, weapon=weapon, base_max_health=base_max_health, max_health=max_health, health=health, base_damage=base_damage,
                          base_agility=base_agility)
 
         self.essence = essence
+        self.blessing = blessing
+
+        self.nuelis_potential = nuelis_potential
+        self.essence_potential = essence_potential
+
+        if self.weapon is not None:
+            self.damage = self.damage + self.weapon.damage
+            self.health = self.health + self.weapon.health
+            self.agility = self.agility + self.weapon.agility
+
+            self.nuelis_potential = self.nuelis_potential * self.weapon.nuelis_potential
+            self.essence_potential = self.essence_potential * self.weapon.essence_potential
+
+        if self.armor is not None:
+            self.health = self.health + self.armour.health
+            self.damage = self.damage + self.armour.damage
+            self.agility = self.agility + self.armour.agility
+
+        if self.blessing is not None:
+            self.health = self.health * self.blessing.health_mp
+            self.damage = self.damage * self.blessing.dmg_mp
+            self.agility = self.agility * self.blessing.agility_mp
+
+            self.nuelis_potential = self.blessing.nuelis_mp
+            self.essence_potential = self.blessing.essence_mp
 
     def trade(self, loses: list = None, gains: list = None, loses_nuelis=None, gains_nuelis=None,
               gains_essence=None, loses_essence=None
@@ -53,6 +78,7 @@ class Player(entity.Entity):
             self.inventory += gains
             self.nuelis += gains_nuelis
             self.essence += gains_essence
+
             return True
         else:
             return False

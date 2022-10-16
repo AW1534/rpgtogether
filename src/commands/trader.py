@@ -2,4 +2,4 @@ from src.helper.rendering import Page
 
 
 def run(player, args, renderer):
-    pass
+    start = Page(title="Trader", text="Welcome to the trader")

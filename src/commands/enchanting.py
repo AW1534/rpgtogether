@@ -1,9 +1,8 @@
 import time
 from src.helper import rng
 from src.objects import enchantments
-from src.classes.player import Player
-from src.objects import items
 from src.helper.rendering import Page
+from src.helper import option
 
 weapon_enchantments = [
     enchantments.sharp,
@@ -40,6 +39,63 @@ aliases = ["ench"]
 description = "casts a spell upon your gear"
 
 
+def disenchant(player, args):
+    disenchanting = input(Page(title="Enchanting - Disenchanting", text=f"What would you like to disenchant, {player.name}?\n>> (Armour/Weapon)\t"))
+
+    if disenchanting.lower() in ["sword", "weapon", "w"]:
+        confirm = input(
+            Page(title="Enchanting - Disenchanting - Weapon", text=f"You are about to disenchant {player.weapon.name}.\n"
+                                                                   f"Enchant: {player.weapon.enchantment.name}"
+                                                                   "this will cost 1000 nuelis.\n"
+                                                                   "Confirm? (Y/N)",
+                 center_title=False
+                 ))
+
+        if confirm in option.yes:
+            res = Page(title="Enchanting - Disenchanting - Weapon", text="Disenchanting your weapon...",
+                       center_title=False)
+            time.sleep(1)
+            player.trade(loses_nuelis=1000)
+            player.weapon.enchantment = None
+            out = Page(title="Enchanting - Disenchanting - Weapon", text="Your weapon has been disenchanted", center_title=False)
+
+        elif confirm in option.no:
+            out = Page(title="Enchanting - Disenchanting - Weapon", text="Cancelled disenchanting", center_title=False)
+
+        else:
+            out = Page(title="Enchanting - Disenchanting - Weapon", text="Please enter a valid response next time....",
+                       center_title=False)
+
+    if disenchanting.lower() in ["armour", "armor", "a"]:
+        confirm = input(
+            Page(title="Enchanting - Disenchanting - Armour", text=f"You are about to disenchant {player.armour.name}.\n"
+                                                                   f"Enchant: {player.armour.enchantment.name}"
+                                                                   "this will cost 1000 nuelis.\n"
+                                                                   "Confirm? (Y/N)",
+                 center_title=False
+                 ))
+
+        if confirm in option.yes:
+            res = Page(title="Enchanting - Disenchanting - Armour", text="Disenchanting your armour...",
+                       center_title=False)
+            time.sleep(1)
+            player.trade(loses_nuelis=1000)
+            player.armour.enchantment = None
+            out = Page(title="Enchanting - Disenchanting - Armour", text="Your armour has been disenchanted",
+                       center_title=False)
+
+        elif confirm in option.no:
+            out = Page(title="Enchanting - Disenchanting - Armour", text="Cancelled disenchanting", center_title=False)
+
+        else:
+            out = Page(title="Enchanting - Disenchanting - Armour", text="Please enter a valid response next time....",
+                       center_title=False)
+
+
+    else:
+        Page(title="Enchanting - Disenchanting", text="Please enter a valid item type next time....")
+
+
 def enchant_weapon(player, args):
     a = Page(title="Enchanting - Sword", text="Enchanting sword...", center_title=False)
 
@@ -71,20 +127,56 @@ def enchant_armour(player, args):
 def run(player, args, renderer):
     intro = Page(title="---> Magical Stone Tablet <---")
 
-    if args[0].lower() in ["sword", "weapon"]:
-        enchant_weapon(player, args)
+    if args[0].lower() in ["disenchant", "unenchant", "grind", "d"]:
+        disenchant(player, args)
 
-    if args[0].lower() in ["clothes", "armour", "armor"]:
-        enchant_armour(player, args)
+    if args[0].lower() in ["enchant", "cast", "e", "spell"]:
 
-    if args[0].lower() in [" ", None]:
-        ask = Page(title="Enchanting", text="What would you like to enchant? (Weapon/Armour)")
-        inp = input()
-
-        if inp.lower() in ["sword", "weapon"]:
+        if args[1].lower() in ["sword", "weapon"]:
             enchant_weapon(player, args)
 
-        if inp.lower() in ["clothes", "armour", "armor"]:
+        if args[1].lower() in ["clothes", "armour", "armor"]:
             enchant_armour(player, args)
+
+        if args[1].lower() in [" ", None]:
+            ask = Page(title="Enchanting", text="What would you like to enchant? (Weapon/Armour)")
+            inp = input()
+
+            if inp.lower() in ["sword", "weapon"]:
+                enchant_weapon(player, args)
+
+            if inp.lower() in ["clothes", "armour", "armor"]:
+                enchant_armour(player, args)
+
+            else:
+                result = Page(title="Enchanting", text="Invalid Arguments, please try again")
+
+        else:
+            result = Page(title="Enchanting", text="Invalid Arguments, please try again")
+
+    if args[0] in [" ", None]:
+        ask = Page(title="Enchanting", text="What would you like to do? (Enchant/Disenchant)")
+        inp = input()
+
+        if inp.lower() in ["disenchant", "unenchant", "grind", "d"]:
+            disenchant(player, args)
+
+        if inp.lower() in ["enchant", "cast", "e", "spell"]:
+            ask = Page(title="Enchanting", text="What would you like to enchant? (Weapon/Armour)")
+            inp = input()
+
+            if inp.lower() in ["sword", "weapon"]:
+                enchant_weapon(player, args)
+
+            if inp.lower() in ["clothes", "armour", "armor"]:
+                enchant_armour(player, args)
+
+            else:
+                result = Page(title="Enchanting", text="Invalid Arguments, please try again")
+
+        else:
+            result = Page(title="Enchanting", text="Invalid Arguments, please try again")
+
     else:
         result = Page(title="Enchanting", text="Invalid Arguments, please try again")
+
