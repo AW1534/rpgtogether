@@ -4,12 +4,15 @@ from src.helper import option, formatting
 from src.objects import items
 from src.classes import player
 from src.objects.entities import gateway_dragon
+from src.helper.rendering import Page
 
 name = "gateway"
 aliases = ["g", "end fight", "dungeon"]
 description = "Woah.. what's that snoring coming from behind those gates?"
 cooldown = 0
 cooldown_warning = ""
+
+game_running = True
 
 
 class Move:
@@ -210,13 +213,11 @@ def next_turn(p):
     ask_for_move(p)
 
 
-game_running = True
-
-
 def check_win(p):
+    global game_running
     if gateway_dragon.health == 0:
         formatting.add_border("gateway", f"YOU HAVE SLAYED THE ALMIGHTY DRAGON")
-        global game_running
+
         game_running = False
 
     if p.health == 0:
@@ -225,9 +226,9 @@ def check_win(p):
 
 
 def open(p):
-    print("A giant gateway appears before you. On the side you notice a small tablet\n"
-          "engraved into the wall. It seems to be a keyhole and a... square hole?\n"
-          "Maybe a cube could fit inside it...?\n")
+    Page(title="Gateway", text="A giant gateway appears before you. On the side you notice a small tablet\n"
+                               "engraved into the wall. It seems to be a keyhole and a... square hole?\n"
+                               "Maybe a cube could fit inside it...?\n")
     x = 0
     if items.key in p.inventory:
         x = 1
@@ -245,26 +246,24 @@ def open(p):
     except TypeError:
         print("Invalid Input")
 
-
     if opening == option.no:
         print("Leaving the gates...")
-        quit(run(p))
+        return False
 
     if opening in option.yes:
-        p.trade(loses=items.key)
-        p.trade(loses=items.cube)
+        p.trade(loses=[items.key, items.cube])
+
         print("You insert the glowing cube and the key into the wall...")
         time.sleep(2)
         print("CRAAAANKKK!!")
         time.sleep(0.5)
         print("The gates slowly open, with rays of blinding light beaming out.")
 
+        return True
+
 
 def run(p: player, args, r):
-    open(p)
-
-    while game_running is True:
-        next_turn(p)
-        check_win(p)
-
-
+    if open(p) is True:
+        while game_running is True:
+            next_turn(p)
+            check_win(p)

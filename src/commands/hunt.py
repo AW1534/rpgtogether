@@ -1,9 +1,8 @@
-import math
-
 from src.helper import rng
 from src.objects import entities
 from src.helper import formatting
-from src.classes.player import Player
+from src.helper.rendering import Page
+
 
 name = "hunt"
 aliases = ["h", "hu", "hun"]
@@ -29,19 +28,16 @@ entity = rng.Roulette(
 
 def run(player, args, r):
     hunted = entity.gen()
-    print(hunted)
-    if len(hunted) <= 0:
-        formatting.add_border(func=name, strings="Nothing found... better luck next time")
+    if len(hunted) == 0:
+        Page(title="Hunt", text="Nothing found... better luck next time")
     else:
         lose = rng.Fight(
             teams=[hunted]
         )
 
-        txt = [f"You found a {x.name.lower()}: {x.description.lower():>15}" for x in hunted].append(
-            f"You lost {abs(lose.gen(player=player))} hp, your current hp is {player.health}"
-        )
-
-        formatting.add_border(func=name, strings=txt)
+        Page(title="Hunt", text=[f"You found a {x.name.lower()}: {x.description.lower():>15}" for x in hunted].append(
+            f"You lost {abs(lose.fight(player=player))} hp, your current hp is {player.health}"
+        ))
 
         drop = rng.Roulette(
             choices=hunted[0].inventory,

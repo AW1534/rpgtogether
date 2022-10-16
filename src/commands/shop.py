@@ -49,6 +49,7 @@ def buy(p, args):
 
             p.trade(gains=i, loses_nuelis=i.value * 1.5)
 
+
 def sell(p, args):
     obj_s_i = []
     s_i = []
@@ -60,7 +61,7 @@ def sell(p, args):
     print("Items available to sell:\n")
 
     l_string = helper.hlist.sort_to_string(s_i)
-    listing = Page(title="Shop - Selling", text=[f"{i}: {item}" for i, item in enumerate(l_string)], center_text=False)
+    listing = Page(title="Shop - Selling", text=[f"{i}: {item}" for i, item in enumerate(l_string)], center_title=False)
 
     selling = int(input(f"\nchoose an item (1-{len(l_string)}) >> "))
 

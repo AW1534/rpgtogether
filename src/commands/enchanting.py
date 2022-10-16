@@ -39,7 +39,7 @@ aliases = ["ench"]
 description = "casts a spell upon your gear"
 
 
-def disenchant(player, args):
+def disenchant(player):
     disenchanting = input(Page(title="Enchanting - Disenchanting", text=f"What would you like to disenchant, {player.name}?\n>> (Armour/Weapon)\t"))
 
     if disenchanting.lower() in ["sword", "weapon", "w"]:
@@ -90,13 +90,11 @@ def disenchant(player, args):
         else:
             out = Page(title="Enchanting - Disenchanting - Armour", text="Please enter a valid response next time....",
                        center_title=False)
-
-
     else:
         Page(title="Enchanting - Disenchanting", text="Please enter a valid item type next time....")
 
 
-def enchant_weapon(player, args):
+def enchant_weapon(player):
     a = Page(title="Enchanting - Sword", text="Enchanting sword...", center_title=False)
 
     weapon_enchant = weapon_rng.gen()
@@ -110,7 +108,7 @@ def enchant_weapon(player, args):
         player.weapon.enchantment.append(weapon_enchant)
 
 
-def enchant_armour(player, args):
+def enchant_armour(player):
     a = Page(title="Enchanting - Armour", text="Enchanting armour...", center_title=False)
 
     armour_enchant = armour_rng.gen()
@@ -128,25 +126,25 @@ def run(player, args, renderer):
     intro = Page(title="---> Magical Stone Tablet <---")
 
     if args[0].lower() in ["disenchant", "unenchant", "grind", "d"]:
-        disenchant(player, args)
+        disenchant(player)
 
     if args[0].lower() in ["enchant", "cast", "e", "spell"]:
 
         if args[1].lower() in ["sword", "weapon"]:
-            enchant_weapon(player, args)
+            enchant_weapon(player)
 
         if args[1].lower() in ["clothes", "armour", "armor"]:
-            enchant_armour(player, args)
+            enchant_armour(player)
 
         if args[1].lower() in [" ", None]:
             ask = Page(title="Enchanting", text="What would you like to enchant? (Weapon/Armour)")
             inp = input()
 
             if inp.lower() in ["sword", "weapon"]:
-                enchant_weapon(player, args)
+                enchant_weapon(player)
 
             if inp.lower() in ["clothes", "armour", "armor"]:
-                enchant_armour(player, args)
+                enchant_armour(player)
 
             else:
                 result = Page(title="Enchanting", text="Invalid Arguments, please try again")
@@ -159,17 +157,17 @@ def run(player, args, renderer):
         inp = input()
 
         if inp.lower() in ["disenchant", "unenchant", "grind", "d"]:
-            disenchant(player, args)
+            disenchant(player)
 
         if inp.lower() in ["enchant", "cast", "e", "spell"]:
             ask = Page(title="Enchanting", text="What would you like to enchant? (Weapon/Armour)")
             inp = input()
 
             if inp.lower() in ["sword", "weapon"]:
-                enchant_weapon(player, args)
+                enchant_weapon(player)
 
             if inp.lower() in ["clothes", "armour", "armor"]:
-                enchant_armour(player, args)
+                enchant_armour(player)
 
             else:
                 result = Page(title="Enchanting", text="Invalid Arguments, please try again")

@@ -1,3 +1,4 @@
+raise Exception
 # rendering system is the very first thing to be imported, as it will show the loading screen
 import asyncio
 import time
@@ -8,6 +9,21 @@ from pymongo.server_api import ServerApi
 from src.helper.rendering import __Renderer, Page
 from src.helper import formatting
 
+from src.helper import hlist
+
+import random
+
+import traceback
+
+import threading
+
+from src.commands import blessing, crafting, debug, enchanting, equip, gateway, hunt, mine, quit, randevent, scavenge, \
+    shop, statue, trader
+
+from src.classes import player
+
+from src.config import config
+
 renderer = __Renderer(
     splash=Page(
         title="RPGTogether is starting up",
@@ -15,19 +31,6 @@ renderer = __Renderer(
               f"{formatting.hyperlink('https://github.com/AW1534/rpgtogether', 'Github')}"]
     )
 )
-
-from src.helper import hlist
-
-import random
-
-import traceback
-
-from src.commands import scavenge, hunt, shop, debug, mine, statue, gateway, quit, randevent
-from src.classes import player
-
-from src.config import config
-
-import threading
 
 print(config)
 
@@ -37,9 +40,6 @@ users = db.users
 
 input = renderer.input
 
-active_commands = [scavenge, hunt, shop, debug, mine, statue, gateway, quit]
-passive_commands = [randevent.wandering, randevent.coin_drop]
-
 r = random.Random()
 
 l = hlist.Unique_generator(
@@ -47,7 +47,7 @@ l = hlist.Unique_generator(
         "Enjoy your stay!",
         "Use help for help on specific commands!",
         "Now begins your new adventure!",
-        "i like men"
+        ""
     ]
 )
 
@@ -62,9 +62,9 @@ def loading_animation(x):
     x.set_page(Page(title="Welcome to RPGTogether", text=l.pick(1), center_title_character="+"))
 
 
-#renderer.animate(loading_animation, interval=0.1)
+# renderer.animate(loading_animation, interval=0.1)
 
-time.sleep(2)  # poopoo
+time.sleep(2)
 done = True
 
 p = None
@@ -72,7 +72,7 @@ p = None
 # TODO: try to load player automatically using save data
 # TODO: achievements
 # TODO: quests
-# TODO: prestige??
+
 
 func_loop = asyncio.new_event_loop()
 update_loop = asyncio.new_event_loop()
@@ -82,14 +82,23 @@ def loop():
     func_loop.run_forever()
 
 
-#t1 = threading.Thread(target=loop, daemon=True).run()
+# t1 = threading.Thread(target=loop, daemon=True).run()
 
-#update_loop.run_forever()
+# update_loop.run_forever()
 
 if p is None:
     p = player.Player(
         name=input("username: ")
     )
+
+
+def rhelp(x, y, z):
+    raise Exception
+
+
+active_commands = [blessing, crafting, debug, enchanting, equip, gateway, hunt, mine, quit, scavenge,
+                   shop, statue, trader]
+passive_commands = [randevent.wandering, randevent.coin_drop]
 
 while True:
     raw_input = input(">>\t")

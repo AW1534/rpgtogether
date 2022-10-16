@@ -102,6 +102,7 @@ class __Renderer:
 
         asyncio.run(loop())
 
+
 class Animation:
     def __init__(self, frames=[], interval=.5, length=5000):
         self.interval = interval

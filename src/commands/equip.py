@@ -1,16 +1,23 @@
 from src import helper
 from src.classes.item import Armor
 from src.objects import items
+from src.helper.rendering import Page
+
 
 name = "equip"
 aliases = ["eq"]
 
 
-def run(p, args, r):
-    if args[0].lower() in ["weapon", "w"]:
-        weapon(p)
-    if args[0].lower() in ["armor", "armour", "a"]:
-        armor(p)
+def run(p, *args, r):
+    if args[0].lower() in ["equip", "e"]:
+        if args[1].lower() in ["weapon", "w"]:
+            weapon(p)
+        if args[1].lower() in ["armor", "armour", "a"]:
+            armor(p)
+        else:
+            print("Invalid Argument")
+    if args[0].lower() in ["unequip", "u"]:
+        unequip(p, args)
     else:
         print("Invalid Argument")
 
@@ -65,3 +72,37 @@ def armor(p):
         loses=[item]
     )
     p.armour = item
+
+
+def unequip(player, *args):
+    if args[1] in ["armour", "armor", "a"]:
+        out = Page(title="Equip - Unequip", text=f"Unequipped {player.armour}")
+        player.trade(gains=player.armour)
+        player.armour = None
+
+    if args[1] in ["weapon", "sword", "w"]:
+        out = Page(title="Equip - Unequip", text=f"Unequipped {player.weapon}")
+        player.trade(gains=player.weapon)
+        player.weapon = None
+
+    if args[1] in [" ", None]:
+        select = input(Page(title="Equip - Unequip", text="What are you unequipping?", center_title=False))
+
+        if select.lower() in ["armour", "armor", "a"]:
+            out = Page(title="Equip - Unequip", text=f"Unequipped {player.armour}")
+            player.trade(gains=player.armour)
+            player.armour = None
+
+        if select.lower() in ["weapon", "sword", "w"]:
+            out = Page(title="Equip - Unequip", text=f"Unequipped {player.weapon}")
+            player.trade(gains=player.weapon)
+            player.weapon = None
+
+        else:
+            out = Page(title="Equip - Unequip", text="Please enter a valid response next time....", center_title=False)
+
+    else:
+        out = Page(title="Equip - Unequip", text="Please enter a valid response next time....", center_title=False)
+
+
+

@@ -1,5 +1,5 @@
 name = "quit"
-aliases = ["leave"]
+aliases = ["leave", "end", "finish"]
 description = "Leave the game"
 
 

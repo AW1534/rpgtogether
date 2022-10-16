@@ -13,23 +13,17 @@ craftables = [x for x in items.all_items if x.recipe is not None or x.recipe is 
 
 
 def run(p, args, renderer: rendering.__Renderer):
-
-
     desired = str(args[0]).replace('"', "").replace("'", "").upper()
     amt = 1
     if args[1] is not None and args[1] >= 1:
         amt = args[1]
 
-
-
     item = [x for x in craftables if x.name.upper() == desired][0]
 
-
-
-    if item == None:
+    if item is None:
         return
 
-    page = rendering.Page(title="Crafting", text=[f"Crafting {list.sort_to_string([item.name], False)[0]}"])
+    page = rendering.Page(title="Crafting", text=[f"Crafting {hlist.sort_to_string([item.name], False)[0]}"])
     renderer.set_page(page)
     time.sleep(15)
     p.trade(
@@ -37,7 +31,7 @@ def run(p, args, renderer: rendering.__Renderer):
         gains=item
     )
     page.buffer = [
-        f"crafted {item.name}",
+        f"Crafted {item.name}",
         f"{item.description}"
     ]
 

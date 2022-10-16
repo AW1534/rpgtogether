@@ -1,2 +1,2 @@
-yes = tuple(("yes", "YES", "yeah", "YEAH", "ok", "OKAY", "y", "Y", "accept", "ACCEPT"))
-no = tuple(("no", "NO", "nah", "NAH", "n", "N"))
+yes = tuple(("yes", "yeah", "ok", "okay", "y", "accept"))
+no = tuple(("no", "nah", "n", "decline"))

@@ -4,6 +4,7 @@ from src.helper.rng import Roulette
 
 
 def wandering(p, r):
+    raise Exception
     # region outcomes
     list_wandering_outcomes_give = ["Killed", "Repay", "Enchant", "Enchant", "Steal", "Steal", "Attempt", "Attempt",
                                     "Attempt"]
