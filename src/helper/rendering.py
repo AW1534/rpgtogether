@@ -104,13 +104,15 @@ class __Renderer:
 
 
 class Animation:
-    def __init__(self, frames=[], interval=.5, length=5000):
+    def __init__(self, frames=None, interval=.5, length=5000):
+        if frames is None:
+            frames = []
         self.interval = interval
         self.frames = frames
         self.length = length
 
     def compile(self):
-        i=0
+        i = 0
         while True:
             yield self.frames[i % len(self.frames)]
-            i+=1
+            i += 1

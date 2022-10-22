@@ -83,6 +83,23 @@ class Player(entity.Entity):
         else:
             return False
 
+    def __str__(self):
+        return self.name
+
+    def __int__(self):
+        return list([f"{self.health =}",
+                     f"{self.base_max_health =}",
+                     f"{self.max_health =}",
+                     f"{self.damage =}",
+                     f"{self.base_damage =}",
+                     f"{self.agility =}"])
+
     def death(self):
         self.inventory = []
         formatting.add_border("you died", "you lost all items in your inventory")
+
+    def checkinv(self):
+        return self.inventory
+
+    def checkbal(self):
+        return self.nuelis

@@ -1,4 +1,4 @@
-from src.classes.enchantment import Enchantment, Weapon, Armour
+from src.classes.enchantment import Weapon, Armour
 
 # region weapon
 sharp = Weapon(
@@ -59,7 +59,7 @@ clover = Weapon(
     rarity="3",
     special=True,
     value=2100,
-    coins_mp=1.5,
+    nuelis_mp=1.5,
     dmg_mp=5,
     info="Increased coins multiplier during scavenge",
 

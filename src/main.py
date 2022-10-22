@@ -2,26 +2,17 @@ raise Exception
 # rendering system is the very first thing to be imported, as it will show the loading screen
 import asyncio
 import time
-
 import pymongo
+import random
+import traceback
 from pymongo.server_api import ServerApi
-
 from src.helper.rendering import __Renderer, Page
 from src.helper import formatting
-
 from src.helper import hlist
-
-import random
-
-import traceback
-
-import threading
-
-from src.commands import blessing, crafting, debug, enchanting, equip, gateway, hunt, mine, quit, randevent, scavenge, \
+from src.commands import blessing, crafting, debug, enchanting, equip, gateway, heal, help, hunt, mine, quit, randevent, \
+    scavenge, \
     shop, statue, trader
-
 from src.classes import player
-
 from src.config import config
 
 renderer = __Renderer(
@@ -47,7 +38,7 @@ l = hlist.Unique_generator(
         "Enjoy your stay!",
         "Use help for help on specific commands!",
         "Now begins your new adventure!",
-        ""
+        "You can only have one blessing at a time"
     ]
 )
 
@@ -91,14 +82,10 @@ if p is None:
         name=input("username: ")
     )
 
-
-def rhelp(x, y, z):
-    raise Exception
-
-
-active_commands = [blessing, crafting, debug, enchanting, equip, gateway, hunt, mine, quit, scavenge,
+active_commands = [blessing, crafting, debug, enchanting, equip, gateway, heal, hunt, mine, quit, scavenge,
                    shop, statue, trader]
 passive_commands = [randevent.wandering, randevent.coin_drop]
+other_commands = [p.checkbal, p.checkinv, help]
 
 while True:
     raw_input = input(">>\t")
@@ -116,3 +103,9 @@ while True:
 
             except Exception as e:
                 traceback.print_exc()
+
+        if cmd in ["checkbal", "balance", "bal"]:
+            Page(title="wallet", text=p.checkbal())
+
+        if cmd in ["checkinv", "inventory", "inv"]:
+            Page(title="inventory", text=p.checkinv())
